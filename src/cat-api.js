@@ -6,8 +6,7 @@ function fetchBreeds() {
   const END_POINT = '/breeds';
   
   return axios
-    .get(`${BASE_URL}${END_POINT}`)
-    .then(response => response.data);
+    .get(`${BASE_URL}${END_POINT}`);
 }
 
 function fetchCatByBreed(breedId) {
