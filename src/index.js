@@ -4,31 +4,39 @@ import { fetchCatByBreed } from './cat-api.js';
 const select = document.querySelector('.breed-select');
 const container = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
-const error = document.querySelector('.error');
-
+const errorr = document.querySelector('.error');
 
 select.addEventListener('change', handlerChange);
-
-loader.classList.add("visually-hidden");
-error.classList.add("visually-hidden");
 
 fetchBreeds()
   .then(response => response.data)
   .then(cats => createBreedsList(cats))
-  .catch(error => console.log(error));
+  .catch(error => {
+    errorr.classList.remove("visually-hidden");
+    loader.classList.add("visually-hidden");
+    return console.log(error)
+  });
 
 function createBreedsList(cats) {
   const marcup = cats
     .map(({ id, name }) => `<option value="${id}">${name}</option>`)
     .join('');
+  loader.classList.add("visually-hidden");
+  select.classList.remove("visually-hidden");
   select.insertAdjacentHTML('beforeEnd', marcup);
 }
 
 function handlerChange(evt) {
-  loader.classList.remove("visually-hidden");
+  errorr.classList.add("visually-hidden");
   fetchCatByBreed(evt.target.value)
     .then(cat => createMarcup(...cat))
-    .catch(error => console.log(error));
+    .catch(error => {
+      loader.classList.add("visually-hidden");
+    errorr.classList.remove("visually-hidden");
+        return console.log(error)
+  })
+    .finally(loader.classList.remove("visually-hidden"),
+  container.classList.add("visually-hidden"));
 }
 
 function createMarcup({ breeds, url }) {
@@ -41,7 +49,8 @@ function createMarcup({ breeds, url }) {
     <p class="breed-temperament"><span class="bold-text">Temperament: </span>${temperament}</p>
   </div>
   `;
-loader.classList.add("visually-hidden");
+  loader.classList.add("visually-hidden");
   container.innerHTML = marcup;
+  container.classList.remove("visually-hidden");
 }
 

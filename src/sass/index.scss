@@ -1,36 +1,52 @@
 @import './common';
 
-body{
-        padding: 10px;
+body {
+  padding: 10px;
+}
+
+.breed-select{
+    margin-bottom: 10px;
+}
+
+.loader {
+    font-weight: bold;
+    margin: 0;
+}
+
+.error{
+    color: red;
+    margin: 0;
 }
 
 .cat-info {
-    display: flex;
-    margin-top: 10px;
+  display: flex;
+  margin-top: 10px;
 }
 
-.breed-wraper{
-margin-left: 15px;
+.breed-wraper {
+  margin-left: 15px;
 }
 
-.breed-name{
-    margin-top: 0;
+.breed-name {
+  margin-top: 0;
 }
 
-.bold-text{
-    font-weight: bold;
+.bold-text {
+  font-weight: bold;
 }
 
 .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
 
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
+
+
