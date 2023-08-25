@@ -1,2 +1,19 @@
 @import './common';
 @import './example';
+
+.cat-info {
+    display: flex;
+    
+}
+
+.breed-wraper{
+padding-left: 15px;
+}
+
+.breed-name{
+    margin-top: 0;
+}
+
+.bold-text{
+    font-weight: bold;
+}
