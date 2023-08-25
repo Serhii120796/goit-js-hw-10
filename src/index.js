@@ -25,7 +25,7 @@ function createBreedsList(cats) {
 }
 
 function handlerChange(evt) {
-  // loader.classList.remove("visually-hidden");
+  loader.classList.remove("visually-hidden");
   fetchCatByBreed(evt.target.value)
     .then(cat => createMarcup(...cat))
     .catch(error => console.log(error));
@@ -41,7 +41,7 @@ function createMarcup({ breeds, url }) {
     <p class="breed-temperament"><span class="bold-text">Temperament: </span>${temperament}</p>
   </div>
   `;
-// loader.classList.add("visually-hidden");
+loader.classList.add("visually-hidden");
   container.innerHTML = marcup;
 }
 

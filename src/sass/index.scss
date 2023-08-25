@@ -1,9 +1,7 @@
 @import './common';
-@import './example';
 
-
-.body{
-    padding: 10px;
+body{
+        padding: 10px;
 }
 
 .cat-info {
@@ -12,7 +10,7 @@
 }
 
 .breed-wraper{
-padding-left: 15px;
+margin-left: 15px;
 }
 
 .breed-name{
