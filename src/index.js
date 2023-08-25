@@ -1,8 +1,5 @@
-import axios from 'axios';
 import { fetchBreeds } from './cat-api.js';
 import { fetchCatByBreed } from './cat-api.js';
-
-// axios.defaults.headers.common["x-api-key"] = "live_QoAFpXJ0Tf8GdGNdEAmOE81aj5UOO9SoN4W537HZj7cZdaRCFoGeW4qsKpdPG0Al";
 
 const select = document.querySelector('.breed-select');
 const container = document.querySelector('.cat-info');
@@ -39,3 +36,4 @@ function createMarcup({ breeds, url }) {
 
   container.innerHTML = marcup;
 }
+
