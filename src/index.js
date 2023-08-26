@@ -2,9 +2,9 @@ import { fetchBreeds } from './cat-api.js';
 import { fetchCatByBreed } from './cat-api.js';
 
 const select = document.querySelector('.breed-select');
-const container = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 const errorMessage = document.querySelector('.error');
+const container = document.querySelector('.cat-info');
 
 select.addEventListener('change', handlerChange);
 
