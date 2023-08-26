@@ -44,7 +44,7 @@ function createMarcup({ breeds, url }) {
   const marcup = `
   <img src="${url}" alt="${name}" class="cat-img" width="${500}">
   <div class="breed-cart">
-    <h1 class="breed-name">${name}</h1>
+    <h2 class="breed-name">${name}</h2>
     <p class="breed-description">${description}</p>
     <p class="breed-temperament"><span class="bold-text">Temperament: </span>${temperament}</p>
   </div>
