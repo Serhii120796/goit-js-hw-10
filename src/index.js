@@ -14,7 +14,7 @@ fetchBreeds()
   .catch(error => {
     errorMessage.classList.remove("visually-hidden");
     loader.classList.add("visually-hidden");
-    return console.log('Error', error.message);
+    console.log('Error', error.message);
   });
 
 function createBreedsList(cats) {
@@ -29,11 +29,12 @@ function createBreedsList(cats) {
 function handlerChange(evt) {
   errorMessage.classList.add("visually-hidden");
   fetchCatByBreed(evt.target.value)
+    .then(response => response.data)
     .then(cat => createMarcup(...cat))
     .catch(error => {
       loader.classList.add("visually-hidden");
     errorMessage.classList.remove("visually-hidden");
-        return console.log(error)
+        console.log('Error', error.message);
   })
     .finally(loader.classList.remove("visually-hidden"),
   container.classList.add("visually-hidden"));
