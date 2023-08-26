@@ -14,7 +14,7 @@ fetchBreeds()
   .catch(error => {
     errorMessage.classList.remove("visually-hidden");
     loader.classList.add("visually-hidden");
-    return console.log(error)
+    return console.log('Error', error.message);
   });
 
 function createBreedsList(cats) {
