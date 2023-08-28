@@ -12,8 +12,8 @@ const container = document.querySelector('.cat-info');
 fetchBreeds()
   .then(response => createBreedsList(response.data))
   .catch(error => {
-    loader.classList.add('visually-hidden');
-    errorMessage.classList.remove('visually-hidden');
+    loader.style.display='none';
+    errorMessage.style.display='block';
     console.log('Error', error.message);
   });
 
@@ -21,8 +21,8 @@ function createBreedsList(cats) {
   const breedsList = cats.map(({ id, name }) => {
     return { value: id, text: name };
   });
-  loader.classList.add('visually-hidden');
-  select.classList.remove('visually-hidden');
+  loader.style.display='none';
+  select.style.display='flex';
 
   new SlimSelect({
     select: '.breed-select',
@@ -33,14 +33,14 @@ function createBreedsList(cats) {
 }
 
 function handlerChange(evt) {
-  errorMessage.classList.add('visually-hidden');
-  loader.classList.remove('visually-hidden');
-  container.classList.add('visually-hidden')
+  errorMessage.style.display='none';
+  loader.style.display='block';
+  container.style.display='none';
   fetchCatByBreed(evt.target.value)
     .then(response => createMarcup(...response.data))
     .catch(error => {
-      loader.classList.add('visually-hidden');
-      errorMessage.classList.remove('visually-hidden');
+      loader.style.display='none';
+      errorMessage.style.display='block';
       console.log('Error', error.message);
     })
 }
@@ -55,7 +55,7 @@ function createMarcup({ breeds, url }) {
     <p class="breed-temperament"><span class="bold-text">Temperament: </span>${temperament}</p>
   </div>
   `;
-  loader.classList.add('visually-hidden');
+  loader.style.display='none';
   container.innerHTML = marcup;
-  container.classList.remove('visually-hidden');
+  container.style.display='flex';
 }
