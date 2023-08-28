@@ -1,19 +1,20 @@
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+Notify.init({position: 'center-top'});
 
 import { fetchBreeds } from './cat-api.js';
 import { fetchCatByBreed } from './cat-api.js';
 
 const select = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
-const errorMessage = document.querySelector('.error');
 const container = document.querySelector('.cat-info');
 
 fetchBreeds()
   .then(response => createBreedsList(response.data))
   .catch(error => {
     loader.style.display='none';
-    errorMessage.style.display='block';
+    Notify.failure(`Oops! Something went wrong! Try reloading the page!`);
     console.log('Error', error.message);
   });
 
@@ -23,7 +24,6 @@ function createBreedsList(cats) {
   });
   loader.style.display='none';
   select.style.display='flex';
-
   new SlimSelect({
     select: '.breed-select',
     data: breedsList,
@@ -33,14 +33,13 @@ function createBreedsList(cats) {
 }
 
 function handlerChange(evt) {
-  errorMessage.style.display='none';
   loader.style.display='block';
   container.style.display='none';
   fetchCatByBreed(evt.target.value)
     .then(response => createMarcup(...response.data))
     .catch(error => {
       loader.style.display='none';
-      errorMessage.style.display='block';
+      Notify.failure(`Oops! Something went wrong! Try reloading the page!`);
       console.log('Error', error.message);
     })
 }
