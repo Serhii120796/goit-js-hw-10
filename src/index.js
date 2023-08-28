@@ -12,8 +12,8 @@ const container = document.querySelector('.cat-info');
 fetchBreeds()
   .then(response => createBreedsList(response.data))
   .catch(error => {
-    errorMessage.classList.remove('visually-hidden');
     loader.classList.add('visually-hidden');
+    errorMessage.classList.remove('visually-hidden');
     console.log('Error', error.message);
   });
 
