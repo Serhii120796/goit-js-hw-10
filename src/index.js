@@ -1,7 +1,7 @@
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-Notify.init({position: 'center-top'});
+Notify.init({ position: 'center-top' });
 
 import { fetchBreeds } from './cat-api.js';
 import { fetchCatByBreed } from './cat-api.js';
@@ -13,17 +13,16 @@ const container = document.querySelector('.cat-info');
 fetchBreeds()
   .then(response => createBreedsList(response.data))
   .catch(error => {
-    loader.style.display='none';
     Notify.failure(`Oops! Something went wrong! Try reloading the page!`);
     console.log('Error', error.message);
-  });
+  })
+  .finally((loader.style.display = 'none'));
 
 function createBreedsList(cats) {
   const breedsList = cats.map(({ id, name }) => {
     return { value: id, text: name };
   });
-  loader.style.display='none';
-  select.style.display='flex';
+  select.style.display = 'flex';
   new SlimSelect({
     select: '.breed-select',
     data: breedsList,
@@ -33,15 +32,15 @@ function createBreedsList(cats) {
 }
 
 function handlerChange(evt) {
-  loader.style.display='block';
-  container.style.display='none';
+  container.style.display = 'none';
+  loader.style.display = 'block';
   fetchCatByBreed(evt.target.value)
     .then(response => createMarcup(...response.data))
     .catch(error => {
-      loader.style.display='none';
       Notify.failure(`Oops! Something went wrong! Try reloading the page!`);
       console.log('Error', error.message);
     })
+    .finally((loader.style.display = 'none'));;
 }
 
 function createMarcup({ breeds, url }) {
@@ -54,7 +53,6 @@ function createMarcup({ breeds, url }) {
     <p class="breed-temperament"><span class="bold-text">Temperament: </span>${temperament}</p>
   </div>
   `;
-  loader.style.display='none';
   container.innerHTML = marcup;
-  container.style.display='flex';
+  container.style.display = 'flex';
 }
